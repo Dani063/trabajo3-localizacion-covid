@@ -16,36 +16,33 @@ public class ListaContactos {
 		NodoTemporal aux = lista, ant=null;
 		boolean salir=false,  encontrado = false;
 		while (aux!=null && !salir) {
-			if(aux.getFecha().compareTo(p.getFechaPosicion())==0) {
-				encontrado = true;
-				salir = true;
-				NodoPosicion npActual = aux.getListaCoordenadas();
-				NodoPosicion npAnt=null;
-				boolean npEncontrado = false;
-				buscaNP(aux, p);
-				if(!npEncontrado) {
-					NodoPosicion npNuevo = new NodoPosicion(p.getCoordenada(),1, null);
-					if(aux.getListaCoordenadas()==null) aux.setListaCoordenadas(npNuevo);
-					else npAnt.setSiguiente(npNuevo);
-				}
-			}else if(aux.getFecha().compareTo(p.getFechaPosicion())<0) {ant = aux; aux=aux.getSiguiente();}
-			else {salir=true;}
+			salir = aux2(p, encontrado, aux, ant);
 		}
 		if(!encontrado) {
 			aux(p, aux, ant);
 		}
 	}
 
-	public void buscaNP (NodoTemporal aux, PosicionPersona p){
-		NodoPosicion npActual = aux.getListaCoordenadas();
-		NodoPosicion npAnt=null;
-		boolean npEncontrado = false;
-		while (npActual!=null && !npEncontrado) {
-			if(npActual.getCoordenada().equals(p.getCoordenada())) {
-				npEncontrado=true;
-				npActual.setNumPersonas(npActual.getNumPersonas()+1);
-			}else {npAnt = npActual; npActual = npActual.getSiguiente();}
-		}
+	public boolean aux2 (PosicionPersona p, boolean encontrado, NodoTemporal aux, NodoTemporal ant){
+		if(aux.getFecha().compareTo(p.getFechaPosicion())==0) {
+			encontrado = true;
+			NodoPosicion npActual = aux.getListaCoordenadas();
+			NodoPosicion npAnt=null;
+			boolean npEncontrado = false;
+			while (npActual!=null && !npEncontrado) {
+				if(npActual.getCoordenada().equals(p.getCoordenada())) {
+					npEncontrado=true;
+					npActual.setNumPersonas(npActual.getNumPersonas()+1);
+				}else {npAnt = npActual; npActual = npActual.getSiguiente();}
+			}
+			if(!npEncontrado) {
+				NodoPosicion npNuevo = new NodoPosicion(p.getCoordenada(),1, null);
+				if(aux.getListaCoordenadas()==null) aux.setListaCoordenadas(npNuevo);
+				else npAnt.setSiguiente(npNuevo);
+			}
+		}else if(aux.getFecha().compareTo(p.getFechaPosicion())<0) {ant = aux; aux=aux.getSiguiente();}
+		else {return true;}
+		return false;
 	}
 	public void aux(PosicionPersona p, NodoTemporal aux, NodoTemporal ant){
 		NodoTemporal nuevo = new NodoTemporal();
