@@ -62,7 +62,7 @@ public class ContactosCovid {
 	public void loadData(String data, boolean reset) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
 		if (reset) {
-			BorrarInfoAnterior();
+			borrarInfoAnterior();
 		}
 		String datas[] = dividirEntrada(data);
 		for (String linea : datas) {
@@ -87,7 +87,7 @@ public class ContactosCovid {
 		}
 	}
 
-	public void BorrarInfoAnterior(){
+	public void borrarInfoAnterior(){
 		this.poblacion = new Poblacion();
 		this.localizacion = new Localizacion();
 		this.listaContactos = new ListaContactos();
@@ -104,7 +104,7 @@ public class ContactosCovid {
 		try {
 			File archivo = new File(fichero);fr = new FileReader(archivo);BufferedReader br = new BufferedReader(fr);
 			if (reset) {
-				BorrarInfoAnterior();
+				borrarInfoAnterior();
 			}
 			String data;
 			while ((data = br.readLine()) != null) {
@@ -116,7 +116,7 @@ public class ContactosCovid {
 						if (datos.length != Constantes.MAX_DATOS_PERSONA) {throw new EmsInvalidNumberOfDataException("El número de datos para PERSONA es menor de 8");}
 						this.poblacion.addPersona(this.crearPersona(datos));
 					}
-					if (datos[0].equals("LOCALIZACION")) {
+					else {
 						if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6" );}
 						PosicionPersona pp = this.crearPosicionPersona(datos);
 						this.localizacion.addLocalizacion(pp);
