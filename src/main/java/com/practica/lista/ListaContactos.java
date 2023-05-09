@@ -26,10 +26,7 @@ public class ListaContactos {
 					if(npActual.getCoordenada().equals(p.getCoordenada())) {
 						npEncontrado=true;
 						npActual.setNumPersonas(npActual.getNumPersonas()+1);
-					}else {
-						npAnt = npActual;
-						npActual = npActual.getSiguiente();
-					}
+					}else {npAnt = npActual; npActual = npActual.getSiguiente();}
 				}
 				if(!npEncontrado) {
 					NodoPosicion npNuevo = new NodoPosicion(p.getCoordenada(),1, null);
@@ -54,10 +51,7 @@ public class ListaContactos {
 			if(npActual.getCoordenada().equals(p.getCoordenada())) {
 				npEncontrado=true;
 				npActual.setNumPersonas(npActual.getNumPersonas()+1);
-			}else {
-				npAnt = npActual;
-				npActual = npActual.getSiguiente();
-			}
+			}else {npAnt = npActual; npActual = npActual.getSiguiente();}
 		}
 		if(!npEncontrado) {
 			NodoPosicion npNuevo = new NodoPosicion(p.getCoordenada(),  1, null);

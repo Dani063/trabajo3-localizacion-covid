@@ -61,7 +61,6 @@ public class ContactosCovid {
 
 	public void loadData(String data, boolean reset) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException,
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
-		// borro información anterior
 		if (reset) {
 			BorrarInfoAnterior();
 		}
@@ -105,9 +104,7 @@ public class ContactosCovid {
 		try {
 			File archivo = new File(fichero);fr = new FileReader(archivo);BufferedReader br = new BufferedReader(fr);
 			if (reset) {
-				this.poblacion = new Poblacion();
-				this.localizacion = new Localizacion();
-				this.listaContactos = new ListaContactos();
+				BorrarInfoAnterior();
 			}
 			String data;
 			while ((data = br.readLine()) != null) {
