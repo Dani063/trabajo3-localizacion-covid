@@ -63,9 +63,7 @@ public class ContactosCovid {
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
 		// borro información anterior
 		if (reset) {
-			this.poblacion = new Poblacion();
-			this.localizacion = new Localizacion();
-			this.listaContactos = new ListaContactos();
+			BorrarInfoAnterior();
 		}
 		String datas[] = dividirEntrada(data);
 		for (String linea : datas) {
@@ -88,6 +86,12 @@ public class ContactosCovid {
 				this.listaContactos.insertarNodoTemporal(pp);
 			}
 		}
+	}
+
+	public void BorrarInfoAnterior(){
+		this.poblacion = new Poblacion();
+		this.localizacion = new Localizacion();
+		this.listaContactos = new ListaContactos();
 	}
 
 	public void loadDataFile(String fichero, boolean reset) {
