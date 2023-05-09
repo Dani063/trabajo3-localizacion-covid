@@ -25,7 +25,7 @@ public class ListaContactos {
 
 	public boolean aux2 (PosicionPersona p, boolean encontrado, NodoTemporal aux, NodoTemporal ant){
 		if(aux.getFecha().compareTo(p.getFechaPosicion())==0) {
-			encontrado = true;
+			encontrado = true;  
 			NodoPosicion npActual = aux.getListaCoordenadas();
 			NodoPosicion npAnt=null;
 			boolean npEncontrado = false;
